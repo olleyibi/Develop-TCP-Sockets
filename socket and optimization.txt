@@ -1,0 +1,47 @@
+import csv
+
+def optimize(input):
+    if len(input)%3 !=0:
+        return "error"
+    else:
+        x = int(len(input) / 3)
+        for i in range(x):
+            x = i + 1
+            if (input[i * 3:(x * 3)] not in codon):
+                return "error"
+
+
+        change=input[0:3]
+        message = input[0:3]
+        acid = ''
+        for i in range(len(codon)):
+            if (codon[i] == message):
+                acid = a_acid[i]
+        for i in range(len(a_acid)):
+            if (a_acid[i]==acid and codon[i] != message):
+                message = codon[i]
+                break
+        return input.replace(change,message)
+
+
+codon=[]
+a_acid=[]
+with open('data.csv') as csv_file:#this will open the txt doc and store the 2nd row elements.sice first row is just heading
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    line_count = 0
+    for row in csv_reader:#for column row. it just passes
+        if line_count == 0:
+            line_count += 1
+        else:
+            codon.append(row[0])
+            a_acid.append(row[1])
+input="AAGAAC"
+output=optimize(input)
+print(output)
+
+
+
+
+
+
+https://www.binarytides.com/python-socket-programming-tutorial/
